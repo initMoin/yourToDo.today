@@ -41,7 +41,7 @@ You open it, you move, you’re done.
 ## Development
 This repository contains the public-facing site:
 
-→ https://github.com/initMoin/yourtodo.today
+→ https://github.com/initMoin/yourToDo.today
 
 The app itself remains private while the rebuild is in progress.
 
