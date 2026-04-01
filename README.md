@@ -1,4 +1,4 @@
-# ToDo
+# <p align="left"><img src="assets/todo.png" width="48" height="48" alt="ToDo icon" /></p> ToDo
 ### yourToDo.today
 A task app built for clarity, speed, and control.
 
@@ -50,3 +50,10 @@ The app itself remains private while the rebuild is in progress.
 - Previous version removed: stability issues  
 - Current phase: full rebuild  
 - Target release:  **Spring 2026**
+
+---
+**ToDo** is a `moin.shift()` project.
+
+It is built and maintained within a system, where work is shaped by intent, held to a standard, and refined through execution. This is not a side project or a template.
+
+It is part of a larger body of work focused on building tools that are fast, deliberate, and built to be used, not explored. Everything here is designed, built, and evaluated against that standard.
