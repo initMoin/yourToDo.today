@@ -171,6 +171,7 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     submitBtn.disabled = true;
     submitBtn.innerText = 'Sending...';
 
@@ -180,30 +181,37 @@
       const response = await fetch(form.action, {
         method: 'POST',
         body: data,
-        headers: { 'Accept': 'application/json' }
+        headers: {
+          Accept: 'application/json'
+        }
       });
+
+      const result = await response.json().catch(() => null);
 
       if (response.ok) {
         form.hidden = true;
         successMsg.hidden = false;
-      } else {
-        alert('Something went wrong. Please try again.');
-        submitBtn.disabled = false;
-        submitBtn.innerText = 'Join Waitlist';
+        return;
       }
+
+      const message =
+      result?.errors?.[0]?.message ||
+      result?.error ||
+      'Something went wrong. Please try again.';
+
+      alert(message);
     } catch (error) {
       alert('Connection error. Check your internet.');
+    } finally {
       submitBtn.disabled = false;
       submitBtn.innerText = 'Join Waitlist';
     }
   });
 </script>
+
 <script>
   const icon = document.querySelector('.hero-icon');
   const expand = document.getElementById('bg-expand');
-  const form = document.getElementById('waitlist-form');
-  const successMsg = document.getElementById('success-msg');
-  const submitBtn = document.getElementById('submit-btn');
 
   let isBlueMode = false;
   let revertQueued = false;
@@ -240,6 +248,7 @@
         revertQueued = false;
         return;
       }
+
       document.body.classList.remove('blue-mode');
       revertQueued = false;
       isBlueMode = false;
@@ -247,35 +256,6 @@
   }
 
   window.addEventListener('scroll', queueReturnToLight, { passive: true });
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Sending...';
-
-    const data = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        form.hidden = true;
-        successMsg.hidden = false;
-      } else {
-        alert('Something went wrong. Please try again.');
-        submitBtn.disabled = false;
-        submitBtn.innerText = 'Join Waitlist';
-      }
-    } catch (error) {
-      alert('Connection error. Check your internet.');
-      submitBtn.disabled = false;
-      submitBtn.innerText = 'Join Waitlist';
-    }
-  });
 </script>
 </body>
 </html>
