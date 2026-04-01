@@ -49,7 +49,8 @@ body.blue-mode .hero-title,
 body.blue-mode .section-title,
 body.blue-mode .platform-card h3,
 body.blue-mode .feature-card h3,
-body.blue-mode .site-footer-copy {
+body.blue-mode .site-footer-copy,
+body.blue-mode .site-footer-links {
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -74,6 +75,18 @@ body.blue-mode .signup-form input {
 body.blue-mode .primary-cta {
   background: var(--todo-yellow);
   color: var(--todo-dark);
+}
+
+body.blue-mode .site-footer-copy a,
+body.blue-mode .site-footer-links a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body.blue-mode .site-footer-copy a:hover,
+body.blue-mode .site-footer-links a:hover,
+body.blue-mode .site-footer-copy a:focus-visible,
+body.blue-mode .site-footer-links a:focus-visible {
+  color: var(--white);
 }
 
 .wallpaper {
@@ -134,6 +147,19 @@ body.blue-mode .primary-cta {
   0 32px 70px rgba(0, 0, 0, 0.18),
   0 10px 24px rgba(0, 0, 0, 0.12);
   animation: iconWiggle 0.5s ease;
+}
+
+.hero-icon:focus-visible,
+.primary-cta:focus-visible,
+.secondary-cta:focus-visible,
+.text-link:focus-visible,
+.signup-form input:focus-visible,
+.signup-form button:focus-visible,
+.site-footer-mark:focus-visible,
+.site-footer-copy a:focus-visible,
+.site-footer-links a:focus-visible {
+  outline: 2px solid var(--todo-blue);
+  outline-offset: 4px;
 }
 
 /* gentle wiggle */
@@ -410,11 +436,13 @@ body.blue-mode .primary-cta {
   transition: transform 0.28s ease;
 }
 
-.text-link:hover {
+.text-link:hover,
+.text-link:focus-visible {
   color: var(--todo-dark);
 }
 
-.text-link:hover::after {
+.text-link:hover::after,
+.text-link:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left center;
 }
@@ -453,7 +481,8 @@ body.blue-mode .primary-cta {
   display: block;
 }
 
-.site-footer-copy {
+.site-footer-copy,
+.site-footer-links {
   font-family: "Jura", sans-serif;
   font-weight: 600;
   font-size: 1.13rem;
@@ -461,7 +490,8 @@ body.blue-mode .primary-cta {
   color: rgba(57, 57, 57, 0.76);
 }
 
-.site-footer-copy a {
+.site-footer-copy a,
+.site-footer-links a {
   position: relative;
   color: inherit;
   text-decoration: none;
@@ -470,7 +500,8 @@ body.blue-mode .primary-cta {
   transition: opacity 0.2s ease, color 0.2s ease;
 }
 
-.site-footer-copy a::after {
+.site-footer-copy a::after,
+.site-footer-links a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -483,18 +514,36 @@ body.blue-mode .primary-cta {
   transition: transform 0.25s ease;
 }
 
-.site-footer-copy a:hover {
+.site-footer-copy a:hover,
+.site-footer-links a:hover,
+.site-footer-copy a:focus-visible,
+.site-footer-links a:focus-visible {
   opacity: 1;
   color: var(--todo-blue);
 }
 
-.site-footer-copy a:hover::after {
+.site-footer-copy a:hover::after,
+.site-footer-copy a:focus-visible::after,
+.site-footer-links a:hover::after,
+.site-footer-links a:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left center;
 }
 
-.site-footer-copy a:not(:hover)::after {
+.site-footer-copy a:not(:hover)::after,
+.site-footer-links a:not(:hover)::after {
   transform-origin: center left;
+}
+
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--todo-blue);
+  outline-offset: 2px;
 }
 
 @media (max-width: 900px) {
@@ -541,7 +590,8 @@ body.blue-mode .primary-cta {
     width: 72px;
   }
 
-  .site-footer-copy {
+  .site-footer-copy,
+  .site-footer-links {
     font-size: 0.98rem;
   }
 }
