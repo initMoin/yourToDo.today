@@ -564,7 +564,11 @@ body.blue-mode .site-footer-links a:focus-visible {
 
   .hero {
     min-height: auto;
-    padding: 7rem 0 2rem;
+    padding: 5rem 0 2rem;
+    justify-content: flex-start;
+  }
+  .hero-copy {
+    margin-bottom: 1.6rem;
   }
 
   .hero-copy,
