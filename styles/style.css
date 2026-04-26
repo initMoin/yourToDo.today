@@ -77,16 +77,22 @@ body.blue-mode .primary-cta {
   color: var(--todo-dark);
 }
 
-body.blue-mode .site-footer-copy a,
 body.blue-mode .site-footer-links a {
   color: rgba(255, 255, 255, 0.9);
 }
 
-body.blue-mode .site-footer-copy a:hover,
 body.blue-mode .site-footer-links a:hover,
-body.blue-mode .site-footer-copy a:focus-visible,
 body.blue-mode .site-footer-links a:focus-visible {
   color: var(--white);
+}
+
+body.blue-mode .site-footer-copy a {
+  color: #ff4e00; 
+}
+
+body.blue-mode .site-footer-copy a:hover,
+body.blue-mode .site-footer-copy a:focus-visible {
+  color: #ff4e00;
 }
 
 .wallpaper {
@@ -490,7 +496,7 @@ body.blue-mode .site-footer-links a:focus-visible {
   color: rgba(57, 57, 57, 0.76);
 }
 
-.site-footer-copy a,
+/* Standard Footer Links */
 .site-footer-links a {
   position: relative;
   color: inherit;
@@ -500,6 +506,17 @@ body.blue-mode .site-footer-links a:focus-visible {
   transition: opacity 0.2s ease, color 0.2s ease;
 }
 
+/* Brand Anchor: moin.shift() */
+.site-footer-copy a {
+  position: relative;
+  color: #ff4e00; /* Forge Orange */
+  text-decoration: none;
+  padding-bottom: 0.08rem;
+  opacity: 1; /* Stands out at full opacity */
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+/* Shared Underline Base */
 .site-footer-copy a::after,
 .site-footer-links a::after {
   content: "";
@@ -508,20 +525,26 @@ body.blue-mode .site-footer-links a:focus-visible {
   bottom: -0.08rem;
   width: 100%;
   height: 1px;
-  background: currentColor;
+  background: currentColor; /* Automatically uses Forge Orange for the brand link */
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.25s ease;
 }
 
-.site-footer-copy a:hover,
+/* Hover States */
 .site-footer-links a:hover,
-.site-footer-copy a:focus-visible,
 .site-footer-links a:focus-visible {
   opacity: 1;
   color: var(--todo-blue);
 }
 
+.site-footer-copy a:hover,
+.site-footer-copy a:focus-visible {
+  opacity: 1;
+  color: #ff4e00; /* Anchors the orange on hover */
+}
+
+/* Underline Animation Trigger */
 .site-footer-copy a:hover::after,
 .site-footer-copy a:focus-visible::after,
 .site-footer-links a:hover::after,
