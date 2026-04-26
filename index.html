@@ -239,6 +239,12 @@
     }
 
     icon.addEventListener('click', () => {
+      // --- GA4 HIDDEN INTERACTION TRACKING ---
+      gtag('event', 'hidden_interaction_discover', {
+        'event_category': 'engagement',
+        'event_label': 'blue_mode_unlocked'
+      });
+
       const rect = icon.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
