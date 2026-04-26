@@ -32,7 +32,7 @@
   <div class="wallpaper" aria-hidden="true"></div>
 
   <main class="landing">
-    <section class="hero">
+    <section id="hero" class="hero">
       <div class="hero-brand">
         <img src="assets/todo.png" alt="toDō icon" class="hero-icon">
       </div>
@@ -45,7 +45,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="#waitlist" class="primary-cta">Join the list</a>
+        <a href="#updates" class="primary-cta">Join the list</a>
         <a href="#about" class="secondary-cta">See what it is</a>
       </div>
     </section>
@@ -66,7 +66,7 @@
       </div>
     </section>
 
-    <section class="content-section">
+    <section id="platforms" class="content-section">
       <p class="section-kicker mono">platforms</p>
       <h2 class="section-title">Native first. Growing with intention.</h2>
       <div class="platform-grid">
@@ -89,7 +89,7 @@
       </div>
     </section>
 
-    <section class="content-section">
+    <section id="why" class="content-section">
       <p class="section-kicker mono">why it matters</p>
       <h2 class="section-title">A task app should help you move, not slow you down.</h2>
       <div class="feature-grid">
@@ -112,7 +112,7 @@
       </div>
     </section>
 
-    <section class="content-section">
+    <section id="direction" class="content-section">
       <p class="section-kicker mono">direction</p>
       <h2 class="section-title">A product with room to grow.</h2>
       <div class="text-stack">
@@ -125,34 +125,34 @@
       </div>
     </section>
 
-    <section id="waitlist" class="content-section waitlist-section">
+    <section id="updates" class="content-section waitlist-section">
       <p class="section-kicker mono">updates</p>
       <h2 class="section-title">Get launch notes, product updates, and early signals.</h2>
       <p class="section-copy">
         Join the list to hear when toDō ships, expands, or opens up something new.
       </p>
 
-      <form id="waitlist-form" action="https://formspree.io/f/xdawqpjb" method="POST" class="signup-form">
+      <form id="waitlist-form" action="https://formspree.io/f/xdawqpjb" method="POST" class="signup-form" novalidate>
         <label for="email" class="sr-only">Email address</label>
-        <input
-        id="email"
-        type="email"
-        name="email"
-        placeholder="Enter your email"
-        required
-        autocomplete="email"
-        />
+
+        <input type="text" name="_gotcha" tabindex="-1" style="display:none" />
+        <div class="input-wrapper">
+          <input
+          id="email"
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+          autocomplete="email"
+          />
+          <span id="form-status" class="status-message" hidden></span>
+        </div>
+
         <button type="submit" id="submit-btn">Join Waitlist</button>
       </form>
-
-      <div id="success-msg" class="success-message" hidden>
-        <span class="check-icon" aria-hidden="true">✓</span>
-        <h3>You’re on the list.</h3>
-        <p>Talk soon.</p>
-      </div>
     </section>
 
-    <section class="content-section final-section">
+    <section id="more" class="content-section final-section">
       <p class="section-kicker mono">more</p>
       <h2 class="section-title">Want the deeper product story?</h2>
       <p class="section-copy">
@@ -160,7 +160,7 @@
       </p>
       <a href="https://iamshift.dev/construct/todo/" class="text-link">Access toDō's story</a>
     </section>
-    <footer class="site-footer" aria-label="Site footer">
+    <footer id="footer" class="site-footer" aria-label="Site footer">
       <a href="https://iamshift.dev" class="site-footer-mark" aria-label="Visit iamshift.dev" rel="noopener noreferrer">
         <img src="assets/logo-orange.png" alt="shift brand mark" class="footer-logo">
       </a>
@@ -172,5 +172,71 @@
       </nav>
     </footer>
   </main>
+  <script>
+    const waitlistForm = document.getElementById('waitlist-form');
+    const emailInput = document.getElementById('email');
+    const statusMessage = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    waitlistForm.addEventListener('submit', async function(e) {
+      e.preventDefault(); 
+
+      statusMessage.hidden = true;
+      statusMessage.className = 'status-message';
+      emailInput.classList.remove('invalid-state');
+
+      if (!emailInput.value || !emailInput.validity.valid) {
+        statusMessage.classList.add('error');
+        emailInput.classList.add('invalid-state');
+
+        if (!emailInput.value) {
+          statusMessage.textContent = "Email is required to join the list.";
+        } else {
+          statusMessage.textContent = "Please enter a valid email address.";
+        }
+
+        statusMessage.hidden = false;
+      return;
+    }
+
+    submitBtn.textContent = 'Joining...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(waitlistForm.action, {
+        method: waitlistForm.method,
+        body: new FormData(waitlistForm),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        statusMessage.classList.add('success');
+        statusMessage.textContent = "✓ You're on the list. Talk soon.";
+        statusMessage.hidden = false;
+        
+        emailInput.value = '';
+        submitBtn.textContent = 'Joined';
+      } else {
+        throw new Error('Server rejected the submission');
+      }
+    } catch (error) {
+      statusMessage.classList.add('error');
+      statusMessage.textContent = "There was an issue joining. Please try again.";
+      statusMessage.hidden = false;
+      
+      submitBtn.textContent = 'Join Waitlist';
+      submitBtn.disabled = false;
+    }
+  });
+
+    emailInput.addEventListener('input', function() {
+      if (statusMessage.classList.contains('error')) {
+        statusMessage.hidden = true;
+        emailInput.classList.remove('invalid-state');
+      }
+    });
+  </script>
 </body>
 </html>

@@ -40,8 +40,8 @@ body {
   z-index: 7; /* Sits ABOVE the ripple */
   background-color: var(--todo-light);
   background-image:
-    linear-gradient(to right, rgba(57, 57, 57, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(57, 57, 57, 0.05) 1px, transparent 1px);
+  linear-gradient(to right, rgba(57, 57, 57, 0.05) 1px, transparent 1px),
+  linear-gradient(to bottom, rgba(57, 57, 57, 0.05) 1px, transparent 1px);
   background-size: 34px 34px;
   /* Smoothly clear the grid background to reveal the blue underneath */
   transition: background-color 0.8s ease;
@@ -244,30 +244,76 @@ body {
   border: 1px solid rgba(57,57,57,0.12);
   background: rgba(255,255,255,0.62);
   box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+  box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  border-color 0.4s ease,
+  background-color 0.4s ease;
+  will-change: transform;
+}
+.platform-card:hover,
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08),
+  0 8px 16px rgba(0,0,0,0.04);
+  border-color: rgba(57,57,57,0.22); 
+
+  background-color: var(--todo-blue);
 }
 
 .platform-card h3,
 .feature-card h3 {
   font-family: "Cal Sans", sans-serif;
   font-size: 1.32rem;
+  letter-spacing: 0.07em;
   margin-bottom: 0.8rem;
   color: var(--todo-dark);
+  transition: color 0.3s ease;
+}
+.platform-card:hover h3,
+.feature-card:hover h3 {
+  color: var(--todo-yellow);
+}
+
+.platform-card:hover p,
+.feature-card:hover p {
+  color: var(--white);
+}
+
+.hero-copy,
+.section-copy,
+.text-stack p,
+.platform-card p,
+.feature-card p {
+  font-size: 1.26rem;
+  line-height: 1.82;
+  color: rgba(57, 57, 57, 0.94);
+  transition: color 0.3s ease;
 }
 
 .waitlist-section {
   padding-bottom: 1rem;
 }
 
+.input-wrapper {
+  flex: 1 1 320px;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem; /* Spacing between input and error text */
+}
+
 .signup-form {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.9rem;
   margin-top: 1.6rem;
 }
 
 .signup-form input {
-  flex: 1 1 320px;
-  max-width: 420px;
+  width: 100%;
+  max-width: none; /* Overrides previous max-width */
   min-height: 60px;
   padding: 1rem 1.1rem;
   border-radius: 999px;
@@ -278,11 +324,21 @@ body {
   font-size: 1.08rem;
   color: var(--todo-dark);
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .signup-form input:focus {
   border-color: var(--todo-blue);
   box-shadow: 0 0 0 4px rgba(0, 108, 231, 0.12);
+}
+
+.signup-form input.invalid-state {
+  border-color: #D93025;
+  background: rgba(217, 48, 37, 0.04); /* Very subtle red tint */
+}
+
+.signup-form input.invalid-state:focus {
+  box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.12);
 }
 
 .signup-form button {
@@ -303,9 +359,40 @@ body {
   cursor: not-allowed;
 }
 
+/* The Unified Status Message Base */
+.status-message {
+  font-family: "Jura", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding-left: 1.1rem;
+  margin-top: -0.2rem; /* Pulls it slightly closer to the input */
+}
+
+/* Error State */
+.status-message.error {
+  color: #D93025; /* Sharp red */
+}
+
+/* Success State */
+.status-message.success {
+  color: var(--todo-green); /* Using your established system green */
+}
+
+/* The visual 'Invalid' state for the input box */
+.signup-form input.invalid-state {
+  border-color: #D93025;
+  background: rgba(217, 48, 37, 0.04);
+}
+
+.signup-form input.invalid-state:focus {
+  box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.12);
+}
+
 .success-message {
   margin-top: 1.25rem;
 }
+
+
 
 .check-icon {
   display: inline-flex;
