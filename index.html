@@ -199,6 +199,14 @@
         const result = await response.json().catch(() => null);
 
         if (response.ok) {
+          // --- GA4 EVENT TRACKING ---
+          gtag('event', 'generate_lead', {
+            'event_category': 'engagement',
+            'event_label': 'waitlist_signup',
+            'value': 1.0,
+            'currency': 'USD'
+          });
+
           form.hidden = true;
           successMsg.hidden = false;
           return;
