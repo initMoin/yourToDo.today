@@ -37,13 +37,12 @@ body {
 .wallpaper {
   position: fixed;
   inset: 0;
-  z-index: 7; /* Sits ABOVE the ripple */
+  z-index: 7;
   background-color: var(--todo-light);
   background-image:
   linear-gradient(to right, rgba(57, 57, 57, 0.05) 1px, transparent 1px),
   linear-gradient(to bottom, rgba(57, 57, 57, 0.05) 1px, transparent 1px);
   background-size: 34px 34px;
-  /* Smoothly clear the grid background to reveal the blue underneath */
   transition: background-color 0.8s ease;
 }
 
@@ -79,7 +78,136 @@ body {
 }
 
 .hero-brand {
-  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
+}
+
+.hero-brand:hover {
+  transform: translateY(-8px) scale(1.04);
+  animation: iconWiggle 0.5s ease;
+}
+
+.hero-release-badge {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  height: 42px;
+  min-width: 42px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ff3b30;
+  color: white;
+  border-radius: 21px;
+  font-family: system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 20;
+
+  transition: transform 0.25s ease;
+}
+
+.hero-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 480px) {
+  .hero-brand-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.hero-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.hero-status-row {
+  display: grid;
+  grid-template-columns: 7ch auto;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.hero-status-label {
+  color: rgba(57, 57, 57, 0.58);
+  font-weight: 200;
+}
+
+.hero-status-value {
+  color: var(--todo-dark);
+  font-weight: 700;
+}
+
+.hero-status-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+
+  color: var(--todo-blue);
+  text-decoration: none;
+
+  letter-spacing: 1.7px;
+
+  font-weight: 700;
+}
+
+.hero-status-link-text {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-status-link-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.14rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s ease;
+}
+
+.hero-status-link:hover .hero-status-link-text::after,
+.hero-status-link:focus-visible .hero-status-link-text::after {
+  transform: scaleX(1);
+}
+
+.hero-status-arrow {
+  display: inline-block;
+  font-size: 0.92em;
+
+  transition: transform 0.22s ease;
+}
+
+.hero-status-link:hover .hero-status-arrow,
+.hero-status-link:focus-visible .hero-status-arrow {
+  transform: translate(1px, -1px);
+}
+
+.hero-status-row:last-child .hero-status-value {
+  color: var(--todo-blue);
 }
 
 .hero-icon {
@@ -89,21 +217,15 @@ body {
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
-.hero-icon:hover {
-  transform: translateY(-8px) scale(1.04);
+.hero-brand:hover .hero-icon {
   box-shadow:
-  0 32px 70px rgba(0, 0, 0, 0.18),
-  0 10px 24px rgba(0, 0, 0, 0.12);
-  animation: iconWiggle 0.5s ease;
+    0 32px 70px rgba(0, 0, 0, 0.18),
+    0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .hero-icon:focus-visible,
 .primary-cta:focus-visible,
-.secondary-cta:focus-visible,
 .text-link:focus-visible,
-.signup-form input:focus-visible,
-.signup-form button:focus-visible,
 .site-footer-mark:focus-visible,
 .site-footer-copy a:focus-visible,
 .site-footer-links a:focus-visible {
@@ -146,19 +268,9 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.hero-copy,
-.section-copy,
-.text-stack p,
-.platform-card p,
-.feature-card p {
-  font-size: 1.26rem;
-  line-height: 1.82;
-  color: rgba(57, 57, 57, 0.94);
-}
-
 .hero-copy {
   max-width: 46rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.75rem;
 }
 
 .hero-actions {
@@ -168,14 +280,12 @@ body {
 }
 
 .primary-cta,
-.secondary-cta,
 .text-link {
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.primary-cta,
-.secondary-cta {
+.primary-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -193,15 +303,8 @@ body {
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
 
-.primary-cta:hover,
-.secondary-cta:hover {
+.primary-cta:hover {
   transform: translateY(-2px);
-}
-
-.secondary-cta {
-  border: 1px solid rgba(57,57,57,0.18);
-  color: var(--todo-dark);
-  background: rgba(255,255,255,0.55);
 }
 
 .content-section {
@@ -219,6 +322,33 @@ body {
   color: var(--todo-dark);
 }
 
+.section-purpose {
+  max-width: 48rem;
+  margin-bottom: 1.5rem;
+
+  font-family: "Cal Sans", sans-serif;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.3;
+
+  color: var(--todo-blue);
+}
+
+.subsection-title {
+  font-family: "Cal Sans", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--todo-dark);
+}
+
+.about-origin {
+  margin-top: 2.5rem;
+}
+
+.version3-link {
+  margin-top: 2rem;
+}
+
 .text-stack {
   display: grid;
   gap: 1.15rem;
@@ -234,11 +364,28 @@ body {
 
 .platform-grid,
 .feature-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+}
+
+.platform-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.platform-versions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+}
+
+.platform-versions span {
+  white-space: nowrap;
 }
 
 .platform-card,
 .feature-card {
+  height: 100%;
   padding: 1.35rem;
   border-radius: 22px;
   border: 1px solid rgba(57,57,57,0.12);
@@ -280,10 +427,18 @@ body {
   color: var(--white);
 }
 
+.platform-card p {
+  font-size: clamp(1.05rem, 0.92rem + 0.25vw, 1.26rem);
+  line-height: 1.65;
+
+  color: rgba(57, 57, 57, 0.94);
+
+  transition: color 0.3s ease;
+}
+
 .hero-copy,
 .section-copy,
 .text-stack p,
-.platform-card p,
 .feature-card p {
   font-size: 1.26rem;
   line-height: 1.82;
@@ -291,153 +446,35 @@ body {
   transition: color 0.3s ease;
 }
 
-.waitlist-section {
-  padding-bottom: 1rem;
-}
-
-.input-wrapper {
-  flex: 1 1 320px;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem; /* Spacing between input and error text */
-}
-
-.signup-form {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.9rem;
-  margin-top: 1.6rem;
-}
-
-.signup-form input {
-  width: 100%;
-  max-width: none; /* Overrides previous max-width */
-  min-height: 60px;
-  padding: 1rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(57, 57, 57, 0.16);
-  background: rgba(255, 255, 255, 0.72);
-  font-family: "Jura", sans-serif;
-  font-weight: 600;
-  font-size: 1.08rem;
-  color: var(--todo-dark);
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.signup-form input:focus {
-  border-color: var(--todo-blue);
-  box-shadow: 0 0 0 4px rgba(0, 108, 231, 0.12);
-}
-
-.signup-form input.invalid-state {
-  border-color: #D93025;
-  background: rgba(217, 48, 37, 0.04); /* Very subtle red tint */
-}
-
-.signup-form input.invalid-state:focus {
-  box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.12);
-}
-
-.signup-form button {
-  min-height: 60px;
-  padding: 1rem 1.45rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--todo-yellow);
-  color: var(--todo-dark);
-  font-family: "Jura", sans-serif;
-  font-weight: 600;
-  font-size: 1.08rem;
-  cursor: pointer;
-}
-
-.signup-form button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* The Unified Status Message Base */
-.status-message {
-  font-family: "Jura", sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding-left: 1.1rem;
-  margin-top: -0.2rem; /* Pulls it slightly closer to the input */
-}
-
-/* Error State */
-.status-message.error {
-  color: #D93025; /* Sharp red */
-}
-
-/* Success State */
-.status-message.success {
-  color: var(--todo-green); /* Using your established system green */
-}
-
-/* The visual 'Invalid' state for the input box */
-.signup-form input.invalid-state {
-  border-color: #D93025;
-  background: rgba(217, 48, 37, 0.04);
-}
-
-.signup-form input.invalid-state:focus {
-  box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.12);
-}
-
-.success-message {
-  margin-top: 1.25rem;
-}
-
-
-
-.check-icon {
-  display: inline-flex;
-  width: 3rem;
-  height: 3rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--todo-green);
-  color: var(--white);
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-}
-
-.success-message h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.25rem;
-}
-
-.success-message p {
-  color: rgba(57,57,57,0.75);
-}
-
 .text-link {
   position: relative;
   display: inline-block;
   margin-top: 1rem;
+  
   color: var(--todo-blue);
   font-weight: 600;
   text-decoration: none;
+  
   padding-bottom: 0.1rem;
+  
   transition: color 0.2s ease;
 }
 
 .text-link::after {
   content: "";
+
   position: absolute;
   left: 0;
   bottom: -0.1rem;
+  
   width: 100%;
   height: 1px;
+  
   background: var(--todo-blue);
+  
   transform: scaleX(0);
   transform-origin: left center;
+  
   transition: transform 0.28s ease;
 }
 
@@ -594,15 +631,12 @@ body {
   .hero-copy,
   .section-copy,
   .text-stack p,
-  .platform-card p,
   .feature-card p {
     font-size: 1.3rem;
   }
 
-  .signup-form input,
-  .signup-form button {
-    width: 100%;
-    max-width: none;
+  .platform-card p {
+    font-size: 1.15rem;
   }
 
   .site-footer {
