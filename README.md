@@ -74,7 +74,7 @@ The toDō application source is maintained separately.
 
 - [toDō on the App Store](https://apps.apple.com/us/app/tod%C5%8D/id6770143925)
 - [The story behind toDō](https://iamshift.substack.com/todo-when-nothing-else-existed)
-- [Full version 3 release details](https://iamshift.substack.com/)
+- [Full version 3 release details](https://iamshift.substack.com/todo)
 - [iamshift.dev](https://iamshift.dev)
 
 ---
