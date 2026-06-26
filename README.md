@@ -1,59 +1,84 @@
-# <p align="left"><img src="assets/todo.png" width="48" height="48" alt="ToDo icon" /></p> ToDo
-### yourToDo.today
-A task app built for clarity, speed, and control.
+# <p align="left"><img src="assets/todo.png" width="48" height="48" alt="toDō icon" /></p> toDō
 
+### yourtodo.today
 
-## Status
-ToDo is currently in development.
+The public site for toDō, a focused task system built around intention, structure, clarity, and momentum.
 
-The previous version was removed from the App Store due to stability issues.  
-Instead of patching it, the app is being rebuilt from the ground up.
+**Available now for iPhone, iPad, and Apple Watch.**
 
-Target release:  **Spring 2026**
-
-
-## Direction
-This is not an incremental update.
-
-The rebuild focuses on:
-
-- a stable, fast core using modern Swift + SwiftUI
-- a clear task lifecycle (create → complete → archive → delete)
-- structure without unnecessary complexity
-- an interface that stays readable and predictable
-- consistency across Apple platforms
-
-Everything is being reconsidered and rebuilt with intent.
-
-
-## Approach
-Most task apps add more over time.
-
-ToDo cuts back.
-
-- fewer decisions  
-- less friction  
-- no noise  
-
-You open it, you move, you’re done.
-
-
-## Development
-This repository contains the public-facing site:
-
-→ https://github.com/initMoin/yourToDo.today
-
-The app itself remains private while the rebuild is in progress.
-
-
-## Timeline
-- Previous version removed: stability issues  
-- Current phase: full rebuild  
-- Target release:  **Spring 2026**
+→ [Download toDō on the App Store](https://apps.apple.com/us/app/tod%C5%8D/id6770143925)
 
 ---
-**ToDo** is a `moin.shift()` project.
 
-It is built and maintained within a system, where work is shaped by intent, held to a standard, and refined through execution. This is not a side project or a template.
+## Current Release
 
-It is part of a larger body of work focused on building tools that are fast, deliberate, and built to be used, not explored. Everything here is designed, built, and evaluated against that standard.
+### Version 3.0.1
+
+- Refined the first-run onboarding experience, including a clearer transition from creating a first toDō into viewing and editing it.
+- Improved Apple Watch independence so core workflows remain available when an iPhone is unavailable.
+
+## Previous Release
+
+### Version 3.0
+
+- Rebuilt toDō around a clearer, more capable task system for iPhone, iPad, and Apple Watch.
+- Added flexible sync options for working across devices, including iCloud and account-based sync where available.
+- Added Widgets, Live Activities, and Dynamic Island support to keep important work visible.
+- Expanded task structure with tags, notes, recurring reminders, due dates, location reminders, and NanoDos.
+- Added calendar mirroring for due-dated toDōs.
+- Added statistics and progress tracking to make completed work visible over time.
+- Improved search, sorting, filtering, grouping, and completed-task management.
+- Expanded Apple Watch support for creating, managing, and completing toDōs from the wrist.
+- Added Shortcuts and App Intents support for creating and managing toDōs through the system.
+- Refined the interface, navigation, performance, and reliability throughout the app.
+
+---
+
+## Timeline
+
+- **toDō began:** October 2018
+- **Original release:** January 2019
+- **Previous version removed:** March 2022, following stability issues
+- **Version 3 rebuild:** completed after extensive testing and user feedback refined the release
+- **Version 3.0 released:** June 25, 2026
+- **Version 3.0.1 released:** June 25, 2026
+- **Current phase:** active development and long-term refinement
+- **Next platform:** macOS in development
+- **Future:** Android and Web
+
+---
+
+## About toDō
+
+toDō was built to reduce drag between intention and completion.
+
+A task can carry context, notes, timing, recurrence, and organization without becoming a ritual. The system is designed to remain clear when work is simple and capable when it is not.
+
+It is native to Apple platforms and currently supports:
+
+- iOS
+- iPadOS
+- watchOS
+
+---
+
+## This Repository
+
+This repository contains the source for the public site at [yourtodo.today](https://yourtodo.today).
+
+The toDō application source is maintained separately.
+
+---
+
+## Related
+
+- [toDō on the App Store](https://apps.apple.com/us/app/tod%C5%8D/id6770143925)
+- [The story behind toDō](https://iamshift.substack.com/todo-when-nothing-else-existed)
+- [Full version 3 release details](https://iamshift.substack.com/)
+- [iamshift.dev](https://iamshift.dev)
+
+---
+
+toDō is a `moin.shift()` project.
+
+Built and maintained with intention, held to the highest standard, and refined through execution.
